@@ -1,0 +1,76 @@
+.tools-home {
+  min-height: 100vh;
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 48px 0 56px;
+  display: grid;
+  gap: 24px;
+}
+
+.tools-hero {
+  border-radius: 20px;
+  padding: 28px;
+  color: #1f2230;
+  background: linear-gradient(140deg, #fef9e8 0%, #e7f1ff 100%);
+  border: 1px solid rgba(31, 34, 48, 0.1);
+}
+
+.tools-kicker {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4463d3;
+}
+
+.tools-hero h1 {
+  margin: 8px 0 10px;
+  font-size: clamp(28px, 4vw, 42px);
+}
+
+.tools-hero p {
+  margin: 0;
+  color: #3e4358;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.tool-card {
+  display: grid;
+  gap: 10px;
+  text-decoration: none;
+  padding: 18px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(31, 34, 48, 0.12);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(18, 22, 34, 0.1);
+}
+
+.tool-card h2 {
+  margin: 0;
+  color: #202439;
+  font-size: 20px;
+}
+
+.tool-card p {
+  margin: 0;
+  color: #5a627d;
+}
+
+.tool-card span {
+  color: #385ad0;
+  font-weight: 700;
+}
+
+.tools-footer {
+  color: #6a728f;
+}
