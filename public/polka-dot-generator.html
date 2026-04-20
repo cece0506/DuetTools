@@ -5,28 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>波点图案生成器 - Duet</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/assets/css/global-navigation.css" />
     <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
   <body>
     <div class="site-shell dot-tool-shell">
-      <nav class="top-nav">
-        <a class="brand" href="/">DUET<small>visual notes</small></a>
-        <div class="nav-links">
-          <a data-nav-link href="/">首页</a>
-          <a data-nav-link href="/">博客</a>
-          <div class="tools-nav-group">
-            <a data-nav-link href="/">工具</a>
-            <div class="tools-nav-menu" data-tools-menu></div>
-          </div>
-        </div>
-      </nav>
+      <nav class="top-nav" data-global-top-nav></nav>
 
-      <aside class="side-nav" aria-label="侧边导航">
-        <a data-nav-link href="/">首页</a>
-        <a data-nav-link href="/">博客</a>
-        <a data-nav-link href="/">工具</a>
-        <button type="button" class="side-nav-top" data-scroll-top aria-label="回到顶部">顶部</button>
-      </aside>
+      <aside class="side-nav" aria-label="侧边导航" data-global-side-nav></aside>
 
       <main class="dot-tool-page">
         <section class="dot-tool-hero editorial-card soft-white">
@@ -208,6 +194,7 @@
       </main>
     </div>
 
+    <script type="module" src="/assets/js/global-navigation.js"></script>
     <script type="module" src="/assets/js/polka-dot-generator.js"></script>
   </body>
 </html>

@@ -1,0 +1,8 @@
+{
+  "production": {
+    "home": "https://duetpalace.top",
+    "blog": "https://duetpalace.top/pages/blog.html/",
+    "tools": "https://duetpalace.top/pages/tools.html/"
+  },
+  "development": {}
+}

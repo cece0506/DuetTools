@@ -1,8 +1,14 @@
+.tools-shell {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 24px 24px 88px;
+}
+
 .tools-home {
   min-height: 100vh;
   width: min(1120px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 48px 0 56px;
+  padding: 24px 0 56px;
   display: grid;
   gap: 24px;
 }
@@ -71,6 +77,26 @@
   font-weight: 700;
 }
 
+.tool-card-fallback {
+  background: #fff8e8;
+  border-color: rgba(209, 155, 42, 0.36);
+}
+
+.tool-card-fallback span {
+  color: #8a5a00;
+}
+
 .tools-footer {
   color: #6a728f;
+}
+
+@media (max-width: 900px) {
+  .tools-shell {
+    padding: 18px 14px 64px;
+  }
+
+  .tools-home {
+    width: 100%;
+    padding-top: 16px;
+  }
 }

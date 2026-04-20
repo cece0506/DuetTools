@@ -194,80 +194,6 @@ function buildGradient(colors) {
   return `linear-gradient(135deg, ${stops})`;
 }
 
-function activateNavState() {
-  const current = window.location.pathname || "/";
-  document.querySelectorAll(".nav-links a[data-nav-link], .side-nav a[data-nav-link]").forEach((anchor) => {
-    const href = anchor.getAttribute("href") || "";
-    const normalizedHref = href === "/" ? "/" : href.replace(/\/$/, "");
-    const normalizedCurrent = current === "/" ? "/" : current.replace(/\/$/, "");
-    if (normalizedCurrent === normalizedHref) {
-      anchor.classList.add("is-active");
-    }
-  });
-}
-
-function initScrollTop() {
-  const button = document.querySelector("[data-scroll-top]");
-  if (!button) {
-    return;
-  }
-  button.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-}
-
-function initToolsDropdownInteraction() {
-  document.querySelectorAll(".tools-nav-group").forEach((group) => {
-    let closeTimer = 0;
-    const open = () => {
-      if (closeTimer) {
-        window.clearTimeout(closeTimer);
-      }
-      group.classList.add("is-open");
-    };
-    const close = () => {
-      closeTimer = window.setTimeout(() => {
-        group.classList.remove("is-open");
-      }, 220);
-    };
-    group.addEventListener("pointerenter", open);
-    group.addEventListener("pointerleave", close);
-    group.addEventListener("focusin", open);
-    group.addEventListener("focusout", close);
-  });
-}
-
-async function loadToolsIntoMenus() {
-  const menus = Array.from(document.querySelectorAll("[data-tools-menu]"));
-  if (menus.length === 0) {
-    return;
-  }
-  try {
-    const response = await fetch("/data/tools.json");
-    if (!response.ok) {
-      throw new Error("Failed to load tools menu");
-    }
-    const tools = await response.json();
-    for (const menu of menus) {
-      const items = tools
-        .map(
-          (tool) => `
-            <a class="tools-nav-item" href="${String(tool.path || "").startsWith("/") ? tool.path : `/${tool.path}`}">
-              <strong>${tool.name}</strong>
-              <span>${tool.description || ""}</span>
-            </a>
-          `,
-        )
-        .join("");
-      menu.innerHTML = `${items}<a class="tools-nav-item tools-nav-all" href="/"><strong>All Tools</strong><span>进入工具页查看完整列表</span></a>`;
-    }
-  } catch {
-    for (const menu of menus) {
-      menu.innerHTML = '<a class="tools-nav-item tools-nav-all" href="/"><strong>Tools</strong><span>打开工具页</span></a>';
-    }
-  }
-}
-
 function updatePresetFromDimensions() {
   const width = round(Number(form.paperWidth.value), 1);
   const height = round(Number(form.paperHeight.value), 1);
@@ -1132,10 +1058,6 @@ function init() {
   if (!canvas || !context) {
     return;
   }
-  activateNavState();
-  initScrollTop();
-  initToolsDropdownInteraction();
-  void loadToolsIntoMenus();
 
   syncLayerUi();
   bindLayerManager();

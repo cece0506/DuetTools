@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rain Clock</title>
+    <link rel="stylesheet" href="/assets/css/global-navigation.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap");
 
@@ -196,6 +197,11 @@
   <body>
     <canvas id="rain-canvas"></canvas>
 
+    <div class="site-shell">
+      <nav class="top-nav" data-global-top-nav></nav>
+      <aside class="side-nav" aria-label="侧边导航" data-global-side-nav></aside>
+    </div>
+
     <div class="glow glow-blue"></div>
     <div class="glow glow-teal"></div>
     <div class="glow glow-coral"></div>
@@ -211,6 +217,7 @@
       <div class="clock-divider"></div>
     </div>
 
+    <script type="module" src="/assets/js/global-navigation.js"></script>
     <script>
       const WEEKDAYS = [
         "星期日",
