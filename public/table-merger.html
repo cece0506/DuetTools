@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>表格合并工具 - Duet</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/assets/css/global-navigation.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.css" />
+    <link rel="stylesheet" href="/assets/css/table-merger.css" />
+  </head>
+  <body>
+    <div class="site-shell table-merger-shell">
+      <nav class="top-nav" data-global-top-nav></nav>
+      <aside class="side-nav" aria-label="侧边导航" data-global-side-nav></aside>
+
+      <main class="table-merger-page">
+        <section class="group-hero">
+          <div>
+            <p class="group-kicker">Table Management Utility</p>
+            <h1>表格合并工具</h1>
+            <p>
+              上传多个表格文件（支持 Excel、CSV），自动检查表头一致性，支持数据合并、字段排序、行级删除，并可导出为新文件。大数据集采用无限滚动以保证流畅体验。
+            </p>
+          </div>
+          <div class="group-hero-badges" aria-label="核心能力">
+            <span>多表合并</span>
+            <span>表头检查</span>
+            <span>字段排序</span>
+            <span>无限滚动</span>
+            <span>导出下载</span>
+          </div>
+        </section>
+
+        <section class="group-layout">
+          <aside class="group-panel">
+            <h2>数据导入</h2>
+            
+            <label class="field">
+              <span>文件编码</span>
+              <select id="encoding">
+                <option value="gbk">GBK (默认)</option>
+                <option value="utf-8">UTF-8</option>
+                <option value="utf-16">UTF-16</option>
+                <option value="iso-8859-1">ISO-8859-1</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>选择表格文件（Excel / CSV）</span>
+              <input id="file-input" type="file" accept=".xlsx,.xls,.csv" multiple hidden />
+              <input id="file-input-ui" class="filepond" type="file" accept=".xlsx,.xls,.csv" multiple />
+            </label>
+
+            <div class="selected-files-container" id="selected-files-container" style="display: none">
+              <h3>已选择文件</h3>
+              <ul id="selected-files-list" class="selected-files-list"></ul>
+            </div>
+
+            <div class="panel-actions">
+              <button id="clear-uploads" type="button" class="btn">清空</button>
+            </div>
+
+            <h2>合并操作</h2>
+            <div class="panel-actions">
+              <button id="merge-tables" type="button" class="btn primary" disabled>合并表格</button>
+              <button id="export-merged" type="button" class="btn" disabled>导出为 CSV</button>
+            </div>
+
+            <p id="status-text" class="status-text" aria-live="polite">等待上传文件</p>
+          </aside>
+
+          <section class="merger-main">
+            <!-- 合并表卡片 -->
+            <article id="merged-card" class="group-card merged-card" style="display: none">
+              <div class="card-head">
+                <h2>合并后的表格</h2>
+                <p id="merged-summary">共 0 行数据</p>
+              </div>
+              
+              <div class="merge-toolbar">
+                <div class="toolbar-left">
+                  <input id="source-filter" class="toolbar-select" list="source-filter-options" placeholder="全部来源文件" />
+                  <datalist id="source-filter-options">
+                    <option value=""></option>
+                  </datalist>
+                  <input 
+                    type="text" 
+                    id="search-box" 
+                    placeholder="搜索数据..." 
+                    class="search-input"
+                  />
+                </div>
+                <div class="toolbar-right">
+                  <button id="toggle-merged-columns" type="button" class="btn" disabled>显示/隐藏列</button>
+                  <button id="delete-selected" type="button" class="btn danger" disabled>
+                    删除已选行
+                  </button>
+                  <span id="selected-count" class="selected-count"></span>
+                </div>
+              </div>
+
+              <div class="table-container">
+                <div class="table-wrapper" id="table-wrapper">
+                  <table id="merged-table" class="merged-table">
+                    <thead id="merged-thead"></thead>
+                    <tbody id="merged-tbody"></tbody>
+                  </table>
+                  <div id="loading-indicator" class="loading-indicator" style="display: none">
+                    <p>加载中...</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="column-selector" id="column-selector" style="display: none">
+                <h3>选择显示列</h3>
+                <div id="column-list"></div>
+                <button id="close-column-selector" class="btn">关闭</button>
+              </div>
+            </article>
+
+            <!-- 空状态 -->
+            <article id="empty-state" class="group-card empty-state">
+              <div class="empty-content">
+                <p>👆 请在左侧选择表格文件并点击"合并表格"</p>
+              </div>
+            </article>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.js"></script>
+
+    <script type="module" src="/assets/js/global-navigation.js"></script>
+    <script type="module" src="/assets/js/table-merger.js"></script>
+  </body>
+</html>
