@@ -16,12 +16,6 @@ const PRESETS = {
   A9: { width: 6.0, height: 7.8 },
 };
 
-const PATTERN_LABELS = {
-  dot: "波点",
-  heart: "爱心",
-  star: "五角星",
-};
-
 const PATTERN_LAYOUT_LABELS = {
   dot: "梅花桩式波点网格",
   heart: "梅花桩式爱心网格",

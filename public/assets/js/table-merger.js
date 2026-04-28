@@ -42,13 +42,6 @@ const ui = {
   loadingIndicator: document.getElementById("loading-indicator"),
 };
 
-const DATE_PATTERNS = [
-  /^\d{4}[-/]\d{1,2}[-/]\d{1,2}(\s\d{1,2}:\d{1,2}(:\d{1,2})?)?$/,
-  /^\d{1,2}[-/]\d{1,2}[-/]\d{4}(\s\d{1,2}:\d{1,2}(:\d{1,2})?)?$/,
-  /^\d{13}$/,
-  /^\d{10}$/,
-];
-
 function setStatus(text) {
   ui.statusText.textContent = text;
 }
@@ -67,13 +60,6 @@ function isDateField(columnName) {
 function isExcelSerialDate(value) {
   const num = Number(value);
   return Number.isFinite(num) && num > 20000 && num < 80000;
-}
-
-function isDateValue(value) {
-  if (value === null || value === undefined || value === "") return false;
-  const str = String(value).trim();
-  if (isExcelSerialDate(str)) return true;
-  return DATE_PATTERNS.some((pattern) => pattern.test(str));
 }
 
 function excelSerialToDate(serial) {
